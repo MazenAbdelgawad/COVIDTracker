@@ -1,6 +1,7 @@
 package iti.intake40.covidtracker.model.db
 
 import android.app.Application
+import android.util.Log
 import iti.intake40.covidtracker.model.Country
 import iti.intake40.covidtracker.model.net.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
@@ -39,6 +40,7 @@ class CountryRepository(application: Application): CoroutineScope {
 
 
     fun refreshCountriesFromApi(){
+        Log.i("@@->"," Start refreshCountriesFromApi()")
         val service = RetrofitClient.makeRetrofitService()
         CoroutineScope(Dispatchers.IO).launch {
             val response = service.loadCountries()
@@ -48,20 +50,23 @@ class CountryRepository(application: Application): CoroutineScope {
                     if (response.isSuccessful) {
                         if (response.body() != null) {
                             //TestCode
-                            print("@@-> statisticTakenAt= : ${response.body()!!.statisticTakenAt}")
-                            print("@@-> Country Count= : ${response.body()!!.countriesStat.size}")
+                            Log.i("@@-> statisticTakenAt= "  , "${response.body()!!.statisticTakenAt}")
+                            Log.i("@@-> Country Count= "," ${response.body()!!.countriesStat.size}")
                             //
+                            var listxx= response.body()!!.countriesStat
                             setCountries(response.body()!!.countriesStat)
+                        }else{
+                            Log.i("@@-> = ","  if (response.body() != null) = null")
                         }
                     } else {
                         //TODO: error message can't get data
                         //error message can't get data
-                        print("@@-> //error message can't get data")
+                        Log.i("@@-> ","//error message can't get data")
                     }
                 }catch (e: HttpException){
-                    print("@@-> //error HttpException")
+                    Log.i("@@->"," //error HttpException")
                 }catch (e: Throwable){
-                    print("@@-> //error Throwable")
+                    Log.i("@@->"," //error Throwable")
                 }
             }
 
