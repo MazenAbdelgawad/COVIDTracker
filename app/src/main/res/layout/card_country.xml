@@ -12,41 +12,44 @@
         android:weightSum="4">
 
         <TextView
-            android:id="@+id/card_total_cases"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/card_total_cases"
-            android:textColor="#F1F1FB"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/card_total_coverd"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/total_recovered"
-            android:textColor="#F1F1FB"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/card_county_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/country_name"
             android:textColor="#F1F1FB"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:fontFamily="@font/acme" />
+
+        <TextView
+            android:id="@+id/card_total_cases"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/card_total_cases"
+            android:textColor="#F1F1FB"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/acme" />
+
+        <TextView
+            android:id="@+id/card_total_coverd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/total_recovered"
+            android:textColor="#F1F1FB"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/acme" />
 
         <TextView
             android:id="@+id/card_total_deaths"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
@@ -54,7 +57,8 @@
             android:text="@string/total_deaths"
             android:textColor="#F1F1FB"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:fontFamily="@font/acme" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

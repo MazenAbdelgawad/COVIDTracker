@@ -8,79 +8,93 @@
     tools:context=".view.activites.HomeActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="237dp"
         android:layout_height="74dp"
         android:layout_marginStart="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/title"
         android:textColor="#D3D8EC"
         android:textSize="50sp"
         android:textStyle="bold"
+        app:fontFamily="@font/acme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/day_id"
-        android:layout_width="68dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/day"
-        android:textColor="#B0DA6E"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/year_id"
-        android:layout_width="69dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="-3dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/year"
-        android:textColor="#D3D8EC"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/month_id"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/month_id"
-        app:layout_constraintTop_toBottomOf="@+id/month_id" />
-
-    <TextView
-        android:id="@+id/month_id"
-        android:layout_width="71dp"
-        android:layout_height="26dp"
-        android:gravity="center"
-        android:text="@string/month"
-        android:textColor="#D3D8EC"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/day_id"
-        app:layout_constraintTop_toBottomOf="@+id/day_id" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="414dp"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="5dp"
         app:cardBackgroundColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/year_id">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <include
             layout="@layout/card_country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </androidx.cardview.widget.CardView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="407dp"
-        android:layout_height="425dp"
+        android:layout_width="415dp"
+        android:layout_height="435dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView">
+
+        <TextView
+            android:id="@+id/day_id"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/day"
+            android:textColor="#B0DA6E"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/acme" />
+
+        <TextView
+            android:id="@+id/month_id"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/month"
+            android:textColor="#D3D8EC"
+            android:textSize="20sp"
+            app:fontFamily="@font/acme" />
+
+        <TextView
+            android:id="@+id/year_id"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/year"
+            android:textColor="#D3D8EC"
+            android:textSize="20sp"
+            app:fontFamily="@font/acme"
+            android:layout_marginRight="16dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
