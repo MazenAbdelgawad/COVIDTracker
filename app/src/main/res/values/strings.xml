@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">COVID Tracker</string>
+    <string name="title">#COVID19</string>
+    <string name="day">13</string>
+    <string name="year">2020</string>
+    <string name="month">April</string>
+    <string name="country_name">Country Name</string>
+    <string name="card_total_cases">Total Cases</string>
+    <string name="total_deaths">Total Deaths</string>
+    <string name="total_recovered" >Total Recovered</string>
 </resources>
