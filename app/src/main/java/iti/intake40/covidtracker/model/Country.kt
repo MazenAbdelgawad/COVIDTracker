@@ -1,5 +1,6 @@
 package iti.intake40.covidtracker.model
 
+import androidx.annotation.Nullable
 import com.google.gson.annotations.SerializedName
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -25,7 +26,7 @@ data class Country (
     @ColumnInfo(name = "new_deaths")
     val newDeaths: String,
 
-    //@SerialName("new_cases")
+    @SerializedName("new_cases")
     @ColumnInfo(name = "new_cases")
     val newCases: String,
 
