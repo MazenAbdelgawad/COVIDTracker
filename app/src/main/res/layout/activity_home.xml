@@ -24,11 +24,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_marginTop="5dp"
         app:cardBackgroundColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,28 +36,25 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <include
-            layout="@layout/card_country"
+            layout="@layout/card_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
     </androidx.cardview.widget.CardView>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="415dp"
-        android:layout_height="435dp"
+        android:layout_width="411dp"
+        android:layout_height="510dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_width="71dp"
+        android:layout_height="132dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView">
@@ -89,12 +85,31 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/year"
             android:textColor="#D3D8EC"
             android:textSize="20sp"
-            app:fontFamily="@font/acme"
-            android:layout_marginRight="16dp" />
+            app:fontFamily="@font/acme" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="45dp"
+        android:layout_height="44dp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/heart" />
+
+    <TextView
+        android:id="@+id/txt_country_name"
+        android:layout_width="140dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="12dp"
+        android:text="subscribe Cuntorty"
+        android:textColor="#D3D8EC"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

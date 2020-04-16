@@ -7,5 +7,14 @@
     <string name="country_name">Country \nName</string>
     <string name="card_total_cases">Total \nCases</string>
     <string name="total_deaths">Total \nDeaths</string>
-    <string name="total_recovered" >Total \nRecovered</string>
+    <string name="total_recovered">Total \nRecovered</string>
+    <string name="egypt">Egypt</string>
+    <string name="Cases">Cases</string>
+    <string name="NewCases">New Cases</string>
+    <string name="totalrecoverd">TotalRecoverd</string>
+    <string name="activecases">Active Cases</string>
+    <string name="deaths">Deaths</string>
+    <string name="newdeaths">New Deaths</string>
+    <string name="seriouscritical">Serious Critical</string>
+    <string name="casespermillion">CasesPerMillion</string>
 </resources>
