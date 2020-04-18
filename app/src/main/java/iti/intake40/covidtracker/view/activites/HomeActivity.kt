@@ -1,7 +1,9 @@
 package iti.intake40.covidtracker.view.activites
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +35,11 @@ class HomeActivity : AppCompatActivity() {
         val layout = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layout
         recyclerView.adapter = HomeAdapter(list)
+    }
+
+    fun clickSubscribeCountry(view: View) {
+        val intent = Intent(this,SubscribeActivity::class.java)
+        startActivity(intent)
     }
 
 

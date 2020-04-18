@@ -20,5 +20,5 @@ interface CountryDao{
     fun deleteAllCountries()
 
     @Query("SELECT * FROM country_table WHERE country_name = :country_name")
-    fun getCountry(country_name: String):Country
+    fun getCountry(country_name: String): LiveData<Country>
 }

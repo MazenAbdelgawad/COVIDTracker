@@ -28,7 +28,6 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="5dp"
         app:cardBackgroundColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -44,8 +43,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="411dp"
-        android:layout_height="510dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,22 +93,25 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_home_heart"
         android:layout_width="45dp"
         android:layout_height="44dp"
+        android:onClick="clickSubscribeCountry"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/heart" />
 
     <TextView
         android:id="@+id/txt_country_name"
-        android:layout_width="140dp"
+        android:layout_width="137dp"
         android:layout_height="21dp"
         android:layout_marginTop="12dp"
-        android:text="subscribe Cuntorty"
+        android:onClick="clickSubscribeCountry"
+        android:text="@string/subscribe_country"
         android:textColor="#D3D8EC"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        />
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView_home_heart"
+        app:layout_constraintTop_toTopOf="@+id/imageView_home_heart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,4 +17,6 @@
     <string name="newdeaths">New Deaths</string>
     <string name="seriouscritical">Serious Critical</string>
     <string name="casespermillion">CasesPerMillion</string>
+    <string name="subscribe_country">Subscribe Country</string>
+    <string name="clickSubscribe">Click on subscribe to select your country</string>
 </resources>

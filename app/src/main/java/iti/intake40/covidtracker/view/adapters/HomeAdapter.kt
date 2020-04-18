@@ -1,6 +1,5 @@
 package iti.intake40.covidtracker.view.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ class HomeAdapter (private val list: List<Country>): RecyclerView.Adapter<HomeAd
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.itemView.card_county_name.text = list[position].countryName
+        holder.itemView.txt_card_select_county.text = list[position].countryName
         holder.itemView.card_total_cases.text = list[position].cases
         holder.itemView.card_total_coverd.text = list[position].totalRecovered
         holder.itemView.card_total_deaths.text = list[position].deaths
