@@ -102,9 +102,11 @@
         app:srcCompat="@drawable/heart" />
 
     <TextView
-        android:id="@+id/txt_country_name"
+        android:id="@+id/txt_country_name_selected"
         android:layout_width="137dp"
         android:layout_height="21dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="12dp"
         android:onClick="clickSubscribeCountry"
         android:text="@string/subscribe_country"

@@ -19,4 +19,11 @@
     <string name="casespermillion">CasesPerMillion</string>
     <string name="subscribe_country">Subscribe Country</string>
     <string name="clickSubscribe">Click on subscribe to select your country</string>
+    <string name="UpdateDataEvery">"Update Data Every "</string>
+    <string name="OneHoure">One Houre</string>
+    <string name="TwoHoure">Two Houre</string>
+    <string name="FiveHoure">Five Houre</string>
+    <string name="OnceaDay">Once a day</string>
+    <string name="selectCountry">Select Country</string>
+    <string name="save">Save</string>
 </resources>
