@@ -4,13 +4,16 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import iti.intake40.covidtracker.R
 import iti.intake40.covidtracker.model.Const
 import iti.intake40.covidtracker.model.Country
+import iti.intake40.covidtracker.model.net.NetworkUtil
 import iti.intake40.covidtracker.view.adapters.HomeAdapter
 import iti.intake40.covidtracker.viewmodel.CountriesViewModel
 import kotlinx.android.synthetic.main.activity_home.*
@@ -29,15 +32,15 @@ class HomeActivity : AppCompatActivity() {
 
         countriesViewModel = ViewModelProviders.of(this).get(CountriesViewModel::class.java)
 
-        countriesViewModel?.refreshCountriesFromApi()
+        countriesViewModel?.refreshCountriesFromApi(applicationContext){
+            if (it != null){
+                Toast.makeText(applicationContext,it,Toast.LENGTH_LONG).show()
+            }
+        }
 
         countriesViewModel?.getCountries()?.observe(this, Observer<List<Country>> {
             setupView(it)
         })
-
-        setTimeing()
-
-
     }
 
 
@@ -45,6 +48,7 @@ class HomeActivity : AppCompatActivity() {
         val layout = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layout
         recyclerView.adapter = HomeAdapter(list)
+        setTimeing()
     }
 
     fun clickSubscribeCountry(view: View) {

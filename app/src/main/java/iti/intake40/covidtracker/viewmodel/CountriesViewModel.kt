@@ -1,9 +1,11 @@
 package iti.intake40.covidtracker.viewmodel
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import iti.intake40.covidtracker.model.Country
 import iti.intake40.covidtracker.model.db.CountryRepository
+import iti.intake40.covidtracker.model.net.NetworkUtil
 import kotlinx.coroutines.launch
 
 class CountriesViewModel(application: Application) : AndroidViewModel(application) {
@@ -14,6 +16,13 @@ class CountriesViewModel(application: Application) : AndroidViewModel(applicatio
 
     //fun getCountry(countryName: String)= repository.getCountry(countryName)
 
-    fun refreshCountriesFromApi() = repository.refreshCountriesFromApi()
+    fun refreshCountriesFromApi(appContext: Context, showError: (String?)->Unit ) {
+        if(NetworkUtil().isNetworkConnected(appContext)) {
+            repository.refreshCountriesFromApi()
+            showError(null)
+        }else{
+            showError("Check network connection to be update..!")
+        }
+    }
 
 }

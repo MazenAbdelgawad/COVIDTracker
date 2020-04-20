@@ -12,7 +12,7 @@ import iti.intake40.covidtracker.model.Country
 import iti.intake40.covidtracker.view.activites.SubscribeActivity
 import kotlinx.android.synthetic.main.card_country.view.*
 
-class SelectCountryAdapter (private val list: List<Country>, private val callbackSelected: (String)->Unit): RecyclerView.Adapter<SelectCountryAdapter.VH>() {
+class SelectCountryAdapter (private val list: List<Country>, private val callbackSelected: (Country)->Unit): RecyclerView.Adapter<SelectCountryAdapter.VH>() {
      lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -29,7 +29,7 @@ class SelectCountryAdapter (private val list: List<Country>, private val callbac
 //            Toast.makeText(context,"dddddddddddd",Toast.LENGTH_LONG).show()
 //            val sharedPref: SharedPreferences = context.getSharedPreferences(SubscribeActivity.PREF_NAME, 0)
 //            sharedPref.edit().putString(SubscribeActivity.PREF_NAME,list[position].countryName).commit()
-            callbackSelected(list[position].countryName)
+            callbackSelected(list[position])
         }
     }
 

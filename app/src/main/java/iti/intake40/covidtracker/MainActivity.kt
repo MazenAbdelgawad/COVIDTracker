@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         countriesViewModel = ViewModelProviders.of(this).get(CountriesViewModel::class.java)
 
-        countriesViewModel?.refreshCountriesFromApi()
+        //countriesViewModel?.refreshCountriesFromApi()
 
         //messageViewModel?.getMessages()?.observe(this, Observer<List<Message>> { this.renderMessges(it) })
 

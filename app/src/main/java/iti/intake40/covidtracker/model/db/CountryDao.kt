@@ -21,4 +21,7 @@ interface CountryDao{
 
     @Query("SELECT * FROM country_table WHERE country_name = :country_name")
     fun getCountry(country_name: String): LiveData<Country>
+
+    @Query("SELECT * FROM country_table WHERE country_name = :country_name")
+    fun getCountryObj(country_name: String): Country
 }

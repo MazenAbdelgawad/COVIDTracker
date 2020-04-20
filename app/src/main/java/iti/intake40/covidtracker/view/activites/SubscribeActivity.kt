@@ -30,7 +30,6 @@ class SubscribeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_subscribe)
 
         subscribeViewModel = ViewModelProviders.of(this).get(SubscribeViewModel::class.java)
-        setTimeing()
 
     }
 
@@ -45,6 +44,7 @@ class SubscribeActivity : AppCompatActivity() {
                 layout_details.visibility = View.INVISIBLE
                 txt_country_name_selected.visibility = View.INVISIBLE
                 imageView_home_heart.visibility = View.INVISIBLE
+                setTimeing()
             } else {
                 layout_subscribe.visibility = View.INVISIBLE
                 layout_details.visibility = View.VISIBLE
@@ -70,6 +70,7 @@ class SubscribeActivity : AppCompatActivity() {
         txt_new_deaths.text = country.newDeaths
         txt_serious_critical.text = country.seriousCritical
         txt_cases_per_million.text = country.totalCasesPer1MPopulation
+        setTimeing()
     }
 
 

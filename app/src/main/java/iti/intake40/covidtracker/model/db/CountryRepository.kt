@@ -1,13 +1,11 @@
 package iti.intake40.covidtracker.model.db
 
-import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import android.widget.Toast
 import iti.intake40.covidtracker.model.Const
 import iti.intake40.covidtracker.model.Country
 import iti.intake40.covidtracker.model.net.RetrofitClient
-import kotlinx.android.synthetic.main.activity_select_country.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,7 +13,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import kotlin.coroutines.CoroutineContext
 
-class CountryRepository(var application: Application): CoroutineScope {
+class CountryRepository(var application: Context): CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
@@ -30,6 +28,8 @@ class CountryRepository(var application: Application): CoroutineScope {
     fun getCountries()= countryDao?.getCountries()
 
     fun getCountry(countryName: String)= countryDao?.getCountry(countryName)
+
+    fun getCountryObj(countryName: String)= countryDao?.getCountryObj(countryName)
 
     fun deleteAllCountry()= countryDao?.deleteAllCountries()
 
@@ -53,16 +53,13 @@ class CountryRepository(var application: Application): CoroutineScope {
                 try {
                     if (response.isSuccessful) {
                         if (response.body() != null) {
-                            //TestCode
-                            Log.i("@@-> statisticTakenAt= "  , "${response.body()!!.statisticTakenAt}")
-                            Log.i("@@-> statisticTakenAt= "  , "ahmed saeed")
+
                             saveDateInPref(response.body()!!.statisticTakenAt)
-                            Log.i("@@-> statisticTakenAt= "  , "mohamed saeed")
-                            Log.i("@@-> Country Count= "," ${response.body()!!.countriesStat.size}")
 
-                            var listxx= response.body()!!.countriesStat
-
-                            setCountries(response.body()!!.countriesStat)
+                            Log.i("@@#-> Countries",response.body()!!.countriesStat.size.toString())
+                            val filterCountries = response.body()!!.countriesStat.filter { it.countryName.trim() != ""  }
+                            setCountries(filterCountries)
+                            Log.i("@@#-> filterCountries",filterCountries.size.toString())
 
                         }else{
                             Log.i("@@-> = ","  if (response.body() != null) = null")
@@ -92,8 +89,6 @@ class CountryRepository(var application: Application): CoroutineScope {
 
     suspend fun saveDateInPrefDB(date:String) {
 
-        Log.i("@@->"," start function")
-
         var realDate = date.replaceAfter(" ", " ", " ")
         var splitDate = realDate.split("-")
 
@@ -121,7 +116,6 @@ class CountryRepository(var application: Application): CoroutineScope {
         sharedPref.edit().putString(Const.PREF_YEAR, year ).commit()
         sharedPref.edit().putString (Const.PREF_MONTH ,month ).commit()
         sharedPref.edit().putString(Const.PREF_DAY ,day).commit()
-
     }
 
 
