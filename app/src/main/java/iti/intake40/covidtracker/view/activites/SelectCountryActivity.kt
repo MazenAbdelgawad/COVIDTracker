@@ -39,20 +39,26 @@ class SelectCountryActivity : AppCompatActivity() {
             setupView(it)
         })
 
-        val sharedPref: SharedPreferences = getSharedPreferences(Const.PREF_NAME, 0)
-        txt_country_name_selected.text = sharedPref.getString(Const.PREF_NAME , "")
 
-        var houre = sharedPref.getInt(Const.PREF_HORE,2)
-
-         when(houre) {
-             NotificationHour.ONE.hour -> { rb1.setChecked(true) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(false)}
-             NotificationHour.TWO.hour -> { rb1.setChecked(false) ; rb2.setChecked(true) ;rb3.setChecked(false);rb4.setChecked(false) }
-             NotificationHour.FIVE.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(true);rb4.setChecked(false)}
-             NotificationHour.DAY.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(true)}
-        }
 
         setTimeing()
 
+    }
+
+    fun setupRadioBut(){
+
+        val sharedPref: SharedPreferences = getSharedPreferences(Const.PREF_NAME, 0)
+        txt_country_name_selected.text = sharedPref.getString(Const.PREF_NAME , "")
+        var houre = sharedPref.getInt(Const.PREF_HORE,2)
+
+        selectRadioButtonHour = houre
+
+        when(houre) {
+            NotificationHour.ONE.hour -> { rb1.setChecked(true) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(false)}
+            NotificationHour.TWO.hour -> { rb1.setChecked(false) ; rb2.setChecked(true) ;rb3.setChecked(false);rb4.setChecked(false) }
+            NotificationHour.FIVE.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(true);rb4.setChecked(false)}
+            NotificationHour.DAY.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(true)}
+        }
     }
 
 
@@ -64,6 +70,7 @@ class SelectCountryActivity : AppCompatActivity() {
         recycler_select_country.adapter = SelectCountryAdapter(list) {
               txt_country_name_selected.text =  it
         }
+        setupRadioBut()
     }
 
     fun onRadioButtonClicked(view: View) {
