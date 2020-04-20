@@ -10,7 +10,12 @@ class Const {
         public  val PREF_DAY = "day"
         public  val PREF_MONTH = "month"
         public  val PREF_YEAR = "year"
+        val PREF_COUNTRY_CASES="cases"
+        val PREF_COUNTRY_DEATHS="deaths"
+        val PREF_COUNTRY_RECOVERED="totalRecovered"
 
+        val KEY_Notification = "KEY_Notification"
+        val WORK_MANAGER_TAG = "WorkManagerTag"
     }
 
 }
