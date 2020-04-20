@@ -1,10 +1,10 @@
-package iti.intake40.covidtracker.model.db
+package iti.intake40.covidtracker.model
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import iti.intake40.covidtracker.model.Const
-import iti.intake40.covidtracker.model.Country
+import iti.intake40.covidtracker.model.db.CountryDao
+import iti.intake40.covidtracker.model.db.CountryDatabase
 import iti.intake40.covidtracker.model.net.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -56,10 +56,8 @@ class CountryRepository(var application: Context): CoroutineScope {
 
                             saveDateInPref(response.body()!!.statisticTakenAt)
 
-                            Log.i("@@#-> Countries",response.body()!!.countriesStat.size.toString())
                             val filterCountries = response.body()!!.countriesStat.filter { it.countryName.trim() != ""  }
                             setCountries(filterCountries)
-                            Log.i("@@#-> filterCountries",filterCountries.size.toString())
 
                         }else{
                             Log.i("@@-> = ","  if (response.body() != null) = null")

@@ -8,13 +8,11 @@ import androidx.core.content.ContextCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import iti.intake40.covidtracker.model.Const
-import iti.intake40.covidtracker.model.db.CountryDao
 import iti.intake40.covidtracker.model.db.CountryDatabase
-import iti.intake40.covidtracker.model.db.CountryRepository
+import iti.intake40.covidtracker.model.CountryRepository
 import iti.intake40.covidtracker.model.net.NetworkUtil
 import iti.intake40.covidtracker.model.net.RetrofitClient
 import iti.intake40.workmanager_notification_demo.util.sendNotification
-import kotlinx.android.synthetic.main.activity_select_country.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,7 +31,8 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
 
     private fun makeNotification(appContext: Context) {
         CoroutineScope(Dispatchers.IO).launch {
-            var repository = CountryRepository(appContext)
+            var repository =
+                CountryRepository(appContext)
             val service = RetrofitClient.makeRetrofitService()
             val response = service.loadCountries()
 
@@ -42,8 +41,10 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
                     if (response.isSuccessful) {
                         if (response.body() != null) {
 
+                            val filterCountries = response.body()!!.countriesStat.filter { it.countryName.trim() != ""  }
+
                             val db = CountryDatabase.getDatabase(applicationContext)
-                            db?.countryDao()?.setCountries(response.body()!!.countriesStat)
+                            db?.countryDao()?.setCountries(filterCountries)
 
                             var msg = ""
                             val sharedPref: SharedPreferences =

@@ -11,12 +11,12 @@
     <string name="egypt">Egypt</string>
     <string name="Cases">Cases</string>
     <string name="NewCases">New Cases</string>
-    <string name="totalrecoverd">TotalRecoverd</string>
+    <string name="totalrecoverd">Total Recoverd</string>
     <string name="activecases">Active Cases</string>
     <string name="deaths">Deaths</string>
     <string name="newdeaths">New Deaths</string>
     <string name="seriouscritical">Serious Critical</string>
-    <string name="casespermillion">CasesPerMillion</string>
+    <string name="casespermillion">Cases Per Million</string>
     <string name="subscribe_country">Subscribe Country</string>
     <string name="clickSubscribe">Click on subscribe to select your country</string>
     <string name="UpdateDataEvery">"Update Data Every "</string>

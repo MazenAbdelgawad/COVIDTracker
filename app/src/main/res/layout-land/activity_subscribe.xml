@@ -33,10 +33,12 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="71dp"
-            android:layout_height="132dp"
-            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/txt_country_name_selected"
             app:layout_constraintTop_toTopOf="@+id/textView">
 
             <TextView
@@ -50,27 +52,35 @@
                 android:textStyle="bold"
                 app:fontFamily="@font/acme" />
 
-            <TextView
-                android:id="@+id/month_id"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/month"
-                android:textColor="#D3D8EC"
-                android:textSize="20sp"
-                app:fontFamily="@font/acme" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/year_id"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="@string/year"
-                android:textColor="#D3D8EC"
-                android:textSize="20sp"
-                app:fontFamily="@font/acme" />
+                <TextView
+                    android:id="@+id/month_id"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/month"
+                    android:textColor="#D3D8EC"
+                    android:textSize="20sp"
+                    app:fontFamily="@font/acme" />
+
+                <TextView
+                    android:id="@+id/year_id"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/year"
+                    android:textColor="#D3D8EC"
+                    android:textSize="20sp"
+                    app:fontFamily="@font/acme" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <ImageView
@@ -80,8 +90,8 @@
             android:layout_marginTop="12dp"
             android:contentDescription="TODO"
             android:onClick="btn_subscribe_click"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView"
             app:srcCompat="@drawable/ic_settings"
             tools:ignore="VectorDrawableCompat" />
 

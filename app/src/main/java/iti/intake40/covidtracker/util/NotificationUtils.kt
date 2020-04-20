@@ -27,21 +27,21 @@ fun NotificationManager.sendNotification(msg: String, appContext: Context) {
 
     val image = BitmapFactory.decodeResource(
         appContext.resources,
-        R.drawable.heart
+        R.mipmap.ic_launcher_foreground
     )
 
     val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
     val builder = NotificationCompat.Builder(appContext, msg)
 
-        .setSmallIcon(R.drawable.heart)
+        .setSmallIcon(R.drawable.ic_stat_name)
         .setContentTitle("New Update")
         .setContentText(msg)
         .setContentIntent(contentPendingIntent)
         .setAutoCancel(true)
         .setLargeIcon(image)
         .addAction(
-            R.drawable.heart,
+            R.mipmap.ic_launcher_foreground,
            "Show Details",
             contentPendingIntent
         )
