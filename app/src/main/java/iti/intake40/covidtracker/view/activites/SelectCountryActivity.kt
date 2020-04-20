@@ -157,7 +157,7 @@ class SelectCountryActivity : AppCompatActivity() {
 
 
     private fun startWorkManger(){
-        val notificationRequest = PeriodicWorkRequestBuilder<NotificationWork>(16, TimeUnit.MINUTES) //TODO: Change with SelectedRadiobuton
+        val notificationRequest = PeriodicWorkRequestBuilder<NotificationWork>(selectRadioButtonHour.toLong(), TimeUnit.HOURS) //TODO: Change with SelectedRadiobuton
             .addTag(WORK_MANAGER_TAG)
             .build()
         workManager.enqueueUniquePeriodicWork(WORK_MANAGER_TAG, ExistingPeriodicWorkPolicy.REPLACE, notificationRequest)
