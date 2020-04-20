@@ -51,18 +51,6 @@ class SelectCountryActivity : AppCompatActivity() {
             setupView(it)
         })
 
-        val sharedPref: SharedPreferences = getSharedPreferences(Const.PREF_NAME, 0)
-        txt_country_name_selected.text = sharedPref.getString(Const.PREF_NAME , "")
-
-        var houre = sharedPref.getInt(Const.PREF_HORE,2)
-
-         when(houre) {
-             NotificationHour.ONE.hour -> { rb1.setChecked(true) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(false)}
-             NotificationHour.TWO.hour -> { rb1.setChecked(false) ; rb2.setChecked(true) ;rb3.setChecked(false);rb4.setChecked(false) }
-             NotificationHour.FIVE.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(true);rb4.setChecked(false)}
-             NotificationHour.DAY.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(true)}
-        }
-
 
     }
 
@@ -77,6 +65,7 @@ class SelectCountryActivity : AppCompatActivity() {
             countryRecovered = it.totalRecovered
         }
         setTimeing()
+        setRadioButton()
     }
 
     fun onRadioButtonClicked(view: View) {
@@ -149,6 +138,23 @@ class SelectCountryActivity : AppCompatActivity() {
         month_id.text  = sharedPref.getString(Const.PREF_MONTH , "")
         day_id.text = sharedPref.getString(Const.PREF_DAY , "")
     }
+
+
+    fun setRadioButton(){
+        val sharedPref: SharedPreferences = getSharedPreferences(Const.PREF_NAME, 0)
+        txt_country_name_selected.text = sharedPref.getString(Const.PREF_NAME , "")
+
+        var houre = sharedPref.getInt(Const.PREF_HORE,2)
+        selectRadioButtonHour = houre
+        when(houre) {
+            NotificationHour.ONE.hour -> { rb1.setChecked(true) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(false)}
+            NotificationHour.TWO.hour -> { rb1.setChecked(false) ; rb2.setChecked(true) ;rb3.setChecked(false);rb4.setChecked(false) }
+            NotificationHour.FIVE.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(true);rb4.setChecked(false)}
+            NotificationHour.DAY.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(true)}
+        }
+    }
+
+
 
     private fun startWorkManger(){
         val notificationRequest = PeriodicWorkRequestBuilder<NotificationWork>(16, TimeUnit.MINUTES) //TODO: Change with SelectedRadiobuton
