@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".view.activites.SubscribeActivity">
+    tools:context=".view.activites.NotificationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,9 +16,9 @@
             android:layout_width="237dp"
             android:layout_height="74dp"
             android:layout_marginStart="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
             android:text="@string/title"
             android:textColor="#D3D8EC"
             android:textSize="50sp"
@@ -75,25 +71,21 @@
 
         <ImageView
             android:id="@+id/imageView_home_heart"
-            android:layout_width="49dp"
-            android:layout_height="42dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="12dp"
             android:contentDescription="TODO"
-            android:onClick="btn_subscribe_click"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:srcCompat="@drawable/ic_settings"
+            app:srcCompat="@drawable/heart"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/txt_country_name_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="5dp"
-            android:clickable="true"
-            android:onClick="btn_subscribe_click"
+            android:clickable="false"
             android:shadowColor="#B2D7B8"
             android:shadowDx="0"
             android:shadowDy="1.5"
@@ -109,12 +101,28 @@
             android:id="@+id/layout_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:clickable="false"
+                android:shadowDx="0"
+                android:shadowDy="1.5"
+                android:shadowRadius="10"
+                android:text="@string/new_changes"
+                android:textColor="#D3D8EC"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/imageView_home_heart"
+                app:layout_constraintTop_toTopOf="@+id/imageView_home_heart" />
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -124,78 +132,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout31"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/customborder"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@string/deaths"
-                                android:textColor="#F61010"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txt_deaths"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:gravity="center"
-                                android:text="2020294"
-                                android:textColor="#F61010"
-                                android:textSize="30sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout32"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/customborder"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@string/newdeaths"
-                                android:textColor="#F61010"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txt_new_deaths"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:text="20202948999"
-                                android:textColor="#F61010"
-                                android:textSize="30sp" />
-
-                        </LinearLayout>
-                    </LinearLayout>
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:id="@+id/linearLayout2"
@@ -204,38 +141,8 @@
                         android:layout_marginTop="18dp"
                         android:baselineAligned="false"
                         android:orientation="horizontal"
-                        android:weightSum="2"
+                        android:weightSum="3"
                         tools:ignore="MissingConstraints">
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout21"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/customborder"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@string/totalrecoverd"
-                                android:textColor="#36C12C"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txt_total_recovered"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:gravity="center"
-                                android:text="2020294"
-                                android:textColor="#36C12C"
-                                android:textSize="30sp" />
-
-                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/linearLayout22"
@@ -244,48 +151,37 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="@string/activecases"
+                                android:text="@string/Cases"
                                 android:textColor="#FF9800"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/txt_active_cases"
+                                android:id="@+id/txt_update_cases"
                                 android:layout_width="match_parent"
-                                android:layout_height="80dp"
+                                android:layout_height="60dp"
                                 android:gravity="center"
                                 android:maxLines="1"
-                                android:text="20202948999"
+                                android:text="202029"
                                 android:textColor="#FF9800"
-                                android:textSize="30sp" />
+                                android:textSize="26sp" />
 
                         </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
 
                         <LinearLayout
-                            android:id="@+id/linearLayout11"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical"
                             tools:ignore="DuplicateIds">
 
@@ -293,168 +189,223 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="@string/Cases"
+                                android:text="@string/deaths"
                                 android:textColor="#D75356"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/txt_cases"
+                                android:id="@+id/txt_update_deaths"
                                 android:layout_width="match_parent"
-                                android:layout_height="80dp"
+                                android:layout_height="60dp"
                                 android:gravity="center"
-                                android:text="2020294"
+                                android:text="2020"
                                 android:textColor="#D75356"
-                                android:textSize="30sp" />
+                                android:textSize="26sp" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/linearLayout12"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="@string/NewCases"
-                                android:textColor="#D75356"
+                                android:text="@string/recover"
+                                android:textColor="#36C12C"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_update_recovered"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:gravity="center"
+                                android:text="20202"
+                                android:textColor="#36C12C"
+                                android:textSize="26sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/notificationborder"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="14dp"
+                                android:gravity="center"
+                                android:text="@string/new_update"
+                                android:textColor="#958B5A"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start|center_vertical"
+                                android:text="@string/Cases"
+                                android:textColor="#BFFF9800"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/txt_new_cases"
                                 android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:text="20202948999"
-                                android:textColor="#D75356"
-                                android:textSize="30sp" />
-
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout41"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/customborder"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@string/seriouscritical"
-                                android:textColor="#958B5A"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txt_serious_critical"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
                                 android:gravity="center"
                                 android:text="2020294"
-                                android:textColor="#958B5A"
-                                android:textSize="30sp" />
+                                android:textColor="#FF9800"
+                                android:textSize="25sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="start|center_vertical"
+                                android:text="@string/totaldeaths"
+                                android:textColor="#BFD75356"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_new_deaths"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="2020294"
+                                android:textColor="#D75356"
+                                android:textSize="25sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="start|center_vertical"
+                                android:text="@string/totalrecoverd"
+                                android:textColor="#BF36C12C"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_new_recovered"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="2020294"
+                                android:textColor="#36C12C"
+                                android:textSize="25sp" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/linearLayout42"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:alpha="0.6"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="14dp"
                                 android:gravity="center"
-                                android:text="@string/casespermillion"
+                                android:text="@string/last_update"
                                 android:textColor="#958B5A"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/txt_cases_per_million"
                                 android:layout_width="match_parent"
-                                android:layout_height="80dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="start|center_vertical"
+                                android:text="@string/Cases"
+                                android:textColor="#BFFF9800"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_last_cases"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:maxLines="1"
-                                android:text="20202948999"
-                                android:textColor="#958B5A"
-                                android:textSize="30sp" />
+                                android:text="2020294"
+                                android:textColor="#FF9800"
+                                android:textSize="25sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="start|center_vertical"
+                                android:text="@string/totaldeaths"
+                                android:textColor="#BFD75356"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_last_deaths"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="2020294"
+                                android:textColor="#D75356"
+                                android:textSize="25sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="start|center_vertical"
+                                android:text="@string/totalrecoverd"
+                                android:textColor="#BF36C12C"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txt_last_recovered"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="2020294"
+                                android:textColor="#36C12C"
+                                android:textSize="25sp" />
 
                         </LinearLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
 
         </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/layout_subscribe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_margin="25dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <Button
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginBottom="20dp"
-                android:alpha=".7"
-                android:background="@drawable/ic_subscribe"
-                android:onClick="btn_subscribe_click"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/clickSubscribe"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

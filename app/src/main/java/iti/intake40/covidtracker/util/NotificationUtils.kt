@@ -9,15 +9,17 @@ import android.graphics.BitmapFactory
 import android.media.RingtoneManager
 import androidx.core.app.NotificationCompat
 import iti.intake40.covidtracker.R
-import iti.intake40.covidtracker.view.activites.SubscribeActivity
+import iti.intake40.covidtracker.model.Const
+import iti.intake40.covidtracker.view.activites.NotificationActivity
 
 
 private val NOTIFICATION_ID = 0
 private val REQUEST_CODE = 0
 private val FLAGS = 0
 
-fun NotificationManager.sendNotification(msg: String, appContext: Context) {
-    val contentIntent = Intent(appContext, SubscribeActivity::class.java)
+fun NotificationManager.sendNotification(msg: String, data: Array<String>, appContext: Context) {
+    val contentIntent = Intent(appContext, NotificationActivity::class.java)
+    contentIntent.putExtra(Const.NOTIFICATION_DATA,data)
     val contentPendingIntent = PendingIntent.getActivity(
         appContext,
         REQUEST_CODE,

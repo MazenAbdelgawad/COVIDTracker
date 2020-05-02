@@ -26,4 +26,9 @@
     <string name="OnceaDay">Once a day</string>
     <string name="selectCountry">Select Country</string>
     <string name="save">Save</string>
+    <string name="new_update">New Update</string>
+    <string name="recover">Recover</string>
+    <string name="last_update">Last Update</string>
+    <string name="totaldeaths">Total Deaths</string>
+    <string name="new_changes">New Changes</string>
 </resources>

@@ -16,6 +16,7 @@ class Const {
 
         val KEY_Notification = "KEY_Notification"
         val WORK_MANAGER_TAG = "WorkManagerTag"
+        val NOTIFICATION_DATA = "NOTIFICATION_DATA"
     }
 
 }

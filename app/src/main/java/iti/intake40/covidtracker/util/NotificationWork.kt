@@ -1,10 +1,7 @@
 package iti.intake40.covidtracker.util
 
-import android.R
-import android.app.AlertDialog
 import android.app.NotificationManager
 import android.content.Context
-import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.core.content.ContextCompat
@@ -51,12 +48,15 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
                             db?.countryDao()?.setCountries(filterCountries)
 
                             var msg = ""
+                            var updateCases = 0
+                            var updateDeaths = 0
+                            var updateRecovered = 0
                             val sharedPref: SharedPreferences =
                                 appContext.getSharedPreferences(Const.PREF_NAME, 0)
                             val countryName = sharedPref.getString(Const.PREF_NAME, "")
-                            var countryCases = sharedPref.getString(Const.PREF_COUNTRY_CASES, "0")
-                            var countryDeaths = sharedPref.getString(Const.PREF_COUNTRY_DEATHS, "0")
-                            var countryRecovered =
+                            var oldCountryCases = sharedPref.getString(Const.PREF_COUNTRY_CASES, "0")
+                            var oldCountryDeaths = sharedPref.getString(Const.PREF_COUNTRY_DEATHS, "0")
+                            var oldCountryRecovered =
                                 sharedPref.getString(Const.PREF_COUNTRY_RECOVERED, "0")
 
                             if (countryName != null) {
@@ -66,22 +66,22 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
 
                                 //ToDo:Make all Not Equal to Be Crroect logic
                                 if (country != null) {
-                                    if (!country.cases.equals(countryCases)) {
-                                        msg += "${country.cases.replace(",", "", true)
-                                            .toInt() - countryCases!!.replace(",", "", true)
-                                            .toInt()} new Cases,"
+                                    if (!country.cases.equals(oldCountryCases)) {
+                                        updateCases =  country.cases.replace(",", "", true)
+                                                .toInt() - oldCountryCases!!.replace(",", "", true).toInt()
+                                        msg += " $updateCases new Cases,"
                                         changeFlag = true
                                     }
-                                    if (!country.deaths.equals(countryDeaths)) {
-                                        msg += " ${country.deaths.replace(",", "", true)
-                                            .toInt() - countryDeaths!!.replace(",", "", true)
-                                            .toInt()} new Deaths,"
+                                    if (!country.deaths.equals(oldCountryDeaths)) {
+                                        updateDeaths = country.deaths.replace(",", "", true)
+                                            .toInt() - oldCountryDeaths!!.replace(",", "", true).toInt()
+                                        msg += " $updateDeaths new Deaths,"
                                         changeFlag = true
                                     }
-                                    if (!country.totalRecovered.equals(countryRecovered)) {
-                                        msg += " ${country.totalRecovered.replace(",", "", true)
-                                            .toInt() - countryRecovered!!.replace(",", "", true)
-                                            .toInt()} new Recovered."
+                                    if (!country.totalRecovered.equals(oldCountryRecovered)) {
+                                        updateRecovered = country.totalRecovered.replace(",", "", true)
+                                            .toInt() - oldCountryRecovered!!.replace(",", "", true).toInt()
+                                        msg += " $updateRecovered new Recovered."
                                         changeFlag = true
                                     }
 
@@ -107,14 +107,17 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
                                         var s = "\n ------------------ \n new (net): " +
                                                 "Cases= ${country.cases}, deaths= ${country.deaths}, Recoverd= ${country.totalRecovered}, " +
                                                 "\n ------------------ \n old (Pref): " +
-                                                " pCases= ${countryCases}, pdeaths= ${countryDeaths}, pRecoverd= ${countryRecovered}"
+                                                " pCases= ${oldCountryCases}, pdeaths= ${oldCountryDeaths}, pRecoverd= ${oldCountryRecovered}"
 
                                         msg += s
                                         //////////////////////////////////////////////
 
+                                        var notif_data: Array<String> = arrayOf(
+                                            updateCases.toString(),updateDeaths.toString(),updateRecovered.toString(),
+                                            country.cases,country.deaths,country.totalRecovered,
+                                            oldCountryCases,oldCountryDeaths,oldCountryRecovered)
 
-
-                                        notificationManager.sendNotification(msg, appContext)
+                                            notificationManager.sendNotification(msg, notif_data, appContext)
                                     } else {
                                         Log.i("@@-> flage ", "  changeFlag False")
                                     }
