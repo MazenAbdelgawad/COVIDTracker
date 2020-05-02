@@ -11,16 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activites.NotificationActivity"
-            android:theme="@style/NoThem"></activity>
         <activity
-            android:name=".view.activites.SelectCountryActivity"
-            android:theme="@style/NoThem"></activity>
-        <activity
-            android:name=".view.activites.SubscribeActivity"
-            android:theme="@style/NoThem" />
-        <activity
-            android:name=".view.activites.HomeActivity"
+            android:name=".SplachActivity"
+            android:screenOrientation="locked"
             android:theme="@style/NoThem">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +21,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.activites.NotificationActivity"
+            android:theme="@style/NoThem" />
+        <activity
+            android:name=".view.activites.SelectCountryActivity"
+            android:theme="@style/NoThem" />
+        <activity
+            android:name=".view.activites.SubscribeActivity"
+            android:theme="@style/NoThem" />
+        <activity
+            android:name=".view.activites.HomeActivity"
+            android:theme="@style/NoThem"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
