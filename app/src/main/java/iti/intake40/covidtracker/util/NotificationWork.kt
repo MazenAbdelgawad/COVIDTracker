@@ -1,15 +1,18 @@
 package iti.intake40.covidtracker.util
 
+import android.R
+import android.app.AlertDialog
 import android.app.NotificationManager
 import android.content.Context
+import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import iti.intake40.covidtracker.model.Const
-import iti.intake40.covidtracker.model.db.CountryDatabase
 import iti.intake40.covidtracker.model.CountryRepository
+import iti.intake40.covidtracker.model.db.CountryDatabase
 import iti.intake40.covidtracker.model.net.NetworkUtil
 import iti.intake40.covidtracker.model.net.RetrofitClient
 import iti.intake40.workmanager_notification_demo.util.sendNotification
@@ -18,6 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+
 
 class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
 
@@ -86,11 +90,11 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
                                         val editPref: SharedPreferences.Editor =
                                             appContext.getSharedPreferences(Const.PREF_NAME, 0)
                                                 .edit()
-                                        editPref.putString(Const.PREF_COUNTRY_CASES, countryCases)
-                                        editPref.putString(Const.PREF_COUNTRY_DEATHS, countryDeaths)
+                                        editPref.putString(Const.PREF_COUNTRY_CASES, country.cases)
+                                        editPref.putString(Const.PREF_COUNTRY_DEATHS, country.deaths)
                                         editPref.putString(
                                             Const.PREF_COUNTRY_RECOVERED,
-                                            countryRecovered
+                                            country.totalRecovered
                                         )
                                         editPref.commit()
 
@@ -98,6 +102,18 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
                                             appContext,
                                             NotificationManager::class.java
                                         ) as NotificationManager
+
+                                        /////////////////////////////////////////////
+                                        var s = "\n ------------------ \n new (net): " +
+                                                "Cases= ${country.cases}, deaths= ${country.deaths}, Recoverd= ${country.totalRecovered}, " +
+                                                "\n ------------------ \n old (Pref): " +
+                                                " pCases= ${countryCases}, pdeaths= ${countryDeaths}, pRecoverd= ${countryRecovered}"
+
+                                        msg += s
+                                        //////////////////////////////////////////////
+
+
+
                                         notificationManager.sendNotification(msg, appContext)
                                     } else {
                                         Log.i("@@-> flage ", "  changeFlag False")

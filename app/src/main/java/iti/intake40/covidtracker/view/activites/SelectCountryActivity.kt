@@ -2,8 +2,6 @@ package iti.intake40.covidtracker.view.activites
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.SystemClock.sleep
-import android.util.Log
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
@@ -11,25 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.Data
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import iti.intake40.covidtracker.R
 import iti.intake40.covidtracker.model.Const
-import iti.intake40.covidtracker.model.Const.Companion.KEY_Notification
 import iti.intake40.covidtracker.model.Const.Companion.WORK_MANAGER_TAG
 import iti.intake40.covidtracker.model.Country
 import iti.intake40.covidtracker.model.NotificationHour
 import iti.intake40.covidtracker.util.NotificationWork
 import iti.intake40.covidtracker.view.adapters.SelectCountryAdapter
 import iti.intake40.covidtracker.viewmodel.SelectCountryViewModel
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_select_country.*
-import kotlinx.android.synthetic.main.activity_select_country.day_id
-import kotlinx.android.synthetic.main.activity_select_country.month_id
-import kotlinx.android.synthetic.main.activity_select_country.txt_country_name_selected
-import kotlinx.android.synthetic.main.activity_select_country.year_id
 import java.util.concurrent.TimeUnit
 
 
@@ -142,7 +131,7 @@ class SelectCountryActivity : AppCompatActivity() {
 
     fun setRadioButton(){
         val sharedPref: SharedPreferences = getSharedPreferences(Const.PREF_NAME, 0)
-        txt_country_name_selected.text = sharedPref.getString(Const.PREF_NAME , "")
+        //txt_country_name_selected.text = sharedPref.getString(Const.PREF_NAME , "")
 
         var houre = sharedPref.getInt(Const.PREF_HORE,2)
         selectRadioButtonHour = houre
@@ -157,8 +146,13 @@ class SelectCountryActivity : AppCompatActivity() {
 
 
     private fun startWorkManger(){
+        val constraintsBuilder: Constraints.Builder = Constraints.Builder()
+        constraintsBuilder.setRequiredNetworkType(NetworkType.CONNECTED)
+        val constraints: Constraints = constraintsBuilder.build()
+
         val notificationRequest = PeriodicWorkRequestBuilder<NotificationWork>(selectRadioButtonHour.toLong(), TimeUnit.HOURS) //TODO: Change with SelectedRadiobuton
             .addTag(WORK_MANAGER_TAG)
+            .setConstraints(constraints)
             .build()
         workManager.enqueueUniquePeriodicWork(WORK_MANAGER_TAG, ExistingPeriodicWorkPolicy.REPLACE, notificationRequest)
     }
