@@ -2,9 +2,9 @@ package iti.intake40.covidtracker.view.activites
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -13,15 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import iti.intake40.covidtracker.R
 import iti.intake40.covidtracker.model.Const
 import iti.intake40.covidtracker.model.Country
-import iti.intake40.covidtracker.model.net.NetworkUtil
 import iti.intake40.covidtracker.view.adapters.HomeAdapter
 import iti.intake40.covidtracker.viewmodel.CountriesViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.day_id
 import kotlinx.android.synthetic.main.activity_home.month_id
-import kotlinx.android.synthetic.main.activity_home.txt_country_name_selected
 import kotlinx.android.synthetic.main.activity_home.year_id
-import kotlinx.android.synthetic.main.activity_select_country.*
 
 class HomeActivity : AppCompatActivity() {
     private var countriesViewModel: CountriesViewModel? = null
@@ -40,7 +37,19 @@ class HomeActivity : AppCompatActivity() {
 
         countriesViewModel?.getCountries()?.observe(this, Observer<List<Country>> {
             setupView(it)
+            swipe_refresh_layout.isRefreshing = false
         })
+
+        swipe_refresh_layout.setProgressBackgroundColorSchemeColor(Color.TRANSPARENT)
+        swipe_refresh_layout.setColorSchemeResources(R.color.colorAccent)
+        swipe_refresh_layout.setOnRefreshListener {
+            countriesViewModel?.refreshCountriesFromApi(applicationContext) {
+                if (it != null) {
+                    Toast.makeText(applicationContext, it, Toast.LENGTH_LONG).show()
+                    swipe_refresh_layout.isRefreshing = false
+                }
+            }
+        }
     }
 
 
@@ -48,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
         val layout = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layout
         recyclerView.adapter = HomeAdapter(list)
-        setTimeing()
+        setTiming()
     }
 
     fun clickSubscribeCountry(view: View) {
@@ -56,7 +65,7 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun setTimeing (){
+    private fun setTiming (){
         val sharedPref: SharedPreferences = getSharedPreferences(Const.PREF_NAME, 0)
         year_id.text = sharedPref.getString(Const.PREF_YEAR,"")
         month_id.text  = sharedPref.getString(Const.PREF_MONTH , "")
