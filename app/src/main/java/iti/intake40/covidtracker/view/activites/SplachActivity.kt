@@ -1,17 +1,12 @@
-package iti.intake40.covidtracker
+package iti.intake40.covidtracker.view.activites
 
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.view.animation.LinearInterpolator
-import androidx.core.animation.addListener
-import iti.intake40.covidtracker.view.activites.HomeActivity
+import iti.intake40.covidtracker.R
 import kotlinx.android.synthetic.main.activity_splach.*
 
 class SplachActivity : AppCompatActivity() {
