@@ -12,7 +12,6 @@ import iti.intake40.covidtracker.model.CountryRepository
 import iti.intake40.covidtracker.model.db.CountryDatabase
 import iti.intake40.covidtracker.model.net.NetworkUtil
 import iti.intake40.covidtracker.model.net.RetrofitClient
-import iti.intake40.workmanager_notification_demo.util.sendNotification
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -104,12 +103,13 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
                                         ) as NotificationManager
 
                                         /////////////////////////////////////////////
-                                        var s = "\n ------------------ \n new (net): " +
-                                                "Cases= ${country.cases}, deaths= ${country.deaths}, Recoverd= ${country.totalRecovered}, " +
-                                                "\n ------------------ \n old (Pref): " +
-                                                " pCases= ${oldCountryCases}, pdeaths= ${oldCountryDeaths}, pRecoverd= ${oldCountryRecovered}"
-
-                                        msg += s
+                                        //more details of Notification
+//                                        var s = "\n ------------------ \n new (net): " +
+//                                                "Cases= ${country.cases}, deaths= ${country.deaths}, Recoverd= ${country.totalRecovered}, " +
+//                                                "\n ------------------ \n old (Pref): " +
+//                                                " pCases= ${oldCountryCases}, pdeaths= ${oldCountryDeaths}, pRecoverd= ${oldCountryRecovered}"
+//
+//                                        msg += s
                                         //////////////////////////////////////////////
 
                                         var notif_data: Array<String> = arrayOf(

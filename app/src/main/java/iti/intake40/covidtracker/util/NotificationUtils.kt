@@ -1,6 +1,5 @@
-package iti.intake40.workmanager_notification_demo.util
+package iti.intake40.covidtracker.util
 
-import android.R.id.message
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
