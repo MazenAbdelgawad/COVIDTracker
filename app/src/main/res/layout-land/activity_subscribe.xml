@@ -152,7 +152,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical">
 
                             <TextView
@@ -182,7 +182,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical">
 
                             <TextView
@@ -224,7 +224,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical">
 
                             <TextView
@@ -254,7 +254,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical">
 
                             <TextView
@@ -295,7 +295,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical"
                             tools:ignore="DuplicateIds">
 
@@ -326,7 +326,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical">
 
                             <TextView
@@ -366,7 +366,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical">
 
                             <TextView
@@ -396,7 +396,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:layout_weight="1"
-                            android:background="@drawable/customborder"
+                            android:background="@drawable/notificationborder"
                             android:orientation="vertical">
 
                             <TextView

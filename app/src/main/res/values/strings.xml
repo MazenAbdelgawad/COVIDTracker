@@ -11,7 +11,7 @@
     <string name="egypt">Egypt</string>
     <string name="Cases">Cases</string>
     <string name="NewCases">New Cases</string>
-    <string name="totalrecoverd">Total Recoverd</string>
+    <string name="totalrecoverd">Total Recovered</string>
     <string name="activecases">Active Cases</string>
     <string name="deaths">Deaths</string>
     <string name="newdeaths">New Deaths</string>
@@ -20,9 +20,9 @@
     <string name="subscribe_country">Subscribe Country</string>
     <string name="clickSubscribe">Click on subscribe to select your country</string>
     <string name="UpdateDataEvery">"Update Data Every "</string>
-    <string name="OneHoure">One Houre</string>
-    <string name="TwoHoure">Two Houre</string>
-    <string name="FiveHoure">Five Houre</string>
+    <string name="OneHoure">One Hour</string>
+    <string name="TwoHoure">Two Hours</string>
+    <string name="FiveHoure">Five Hours</string>
     <string name="OnceaDay">Once a day</string>
     <string name="selectCountry">Select Country</string>
     <string name="save">Save</string>
