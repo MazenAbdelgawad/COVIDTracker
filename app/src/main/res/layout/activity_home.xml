@@ -7,22 +7,107 @@
     android:background="@drawable/gradient"
     tools:context=".view.activites.HomeActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="237dp"
-        android:layout_height="74dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/title"
-        android:textColor="#D3D8EC"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        app:fontFamily="@font/acme"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView">
+
+            <TextView
+                android:id="@+id/day_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/day"
+                android:textColor="#B0DA6E"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/acme" />
+
+            <TextView
+                android:id="@+id/month_id"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/month"
+                android:textColor="#D3D8EC"
+                android:textSize="20sp"
+                app:fontFamily="@font/acme" />
+
+            <TextView
+                android:id="@+id/year_id"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/year"
+                android:textColor="#D3D8EC"
+                android:textSize="20sp"
+                app:fontFamily="@font/acme" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:clickable="true"
+            android:onClick="clickSubscribeCountry"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <ImageView
+                android:id="@+id/imageView_home_heart"
+                android:layout_width="40dp"
+                android:layout_height="39dp"
+                android:onClick="clickSubscribeCountry"
+                android:padding="5dp"
+                app:srcCompat="@drawable/heart" />
+
+            <TextView
+                android:id="@+id/txt_country_name_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:onClick="clickSubscribeCountry"
+                android:text="@string/subscribe_country"
+                android:textColor="#D3D8EC"
+                android:textColorHighlight="#1100FF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="237dp"
+            android:layout_height="74dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/title"
+            android:textColor="#D3D8EC"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/acme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -32,7 +117,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <include
             layout="@layout/card_title"
@@ -56,76 +141,5 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="71dp"
-        android:layout_height="132dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView">
-
-        <TextView
-            android:id="@+id/day_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/day"
-            android:textColor="#B0DA6E"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            app:fontFamily="@font/acme" />
-
-        <TextView
-            android:id="@+id/month_id"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/month"
-            android:textColor="#D3D8EC"
-            android:textSize="20sp"
-            app:fontFamily="@font/acme" />
-
-        <TextView
-            android:id="@+id/year_id"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="@string/year"
-            android:textColor="#D3D8EC"
-            android:textSize="20sp"
-            app:fontFamily="@font/acme" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView_home_heart"
-        android:layout_width="45dp"
-        android:layout_height="44dp"
-        android:onClick="clickSubscribeCountry"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/heart" />
-
-    <TextView
-        android:id="@+id/txt_country_name_selected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:onClick="clickSubscribeCountry"
-        android:shadowColor="#6BCA98"
-        android:shadowDx="0"
-        android:shadowDy="1.5"
-        android:shadowRadius="10"
-        android:text="@string/subscribe_country"
-        android:textColor="#D3D8EC"
-        android:textColorHighlight="#1100FF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView_home_heart"
-        app:layout_constraintTop_toTopOf="@+id/imageView_home_heart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
