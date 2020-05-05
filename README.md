@@ -23,4 +23,12 @@ Get the data from: [Coronavirus Monitor API](https://rapidapi.com/astsiatsko/api
 
 ## Screenshot:
 
-![]()
+![](images/Screenshot_1-SplashScreen.jpg)
+![](images/Screenshot_2-HomeScreen.jpg)
+![](images/Screenshot_3-SubscribeScreen.jpg)
+![](images/Screenshot_4-SelectCountryScreen.jpg)
+![](images/Screenshot_5-HomeScreen_Land.jpg)
+![](images/Screenshot_6-Notification.jpg)
+![](images/Screenshot_7-NotificationScreen.jpg)
+![](images/Screenshot_8-NotificationScreen_Land.jpg)
+
