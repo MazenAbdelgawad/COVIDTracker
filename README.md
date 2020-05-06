@@ -36,4 +36,4 @@ Get the data from: [Coronavirus Monitor API](https://rapidapi.com/astsiatsko/api
    <br/> <br/>                                                                                                  
   <img src = "images/Screenshot_5-HomeScreen_Land.jpg" height ="216" >                
   <img src = "images/Screenshot_8-NotificationScreen_Land.jpg" height = "216">  
-<div>
+</div>
