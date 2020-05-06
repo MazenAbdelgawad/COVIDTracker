@@ -11,6 +11,7 @@ Get the data from: [Coronavirus Monitor API](https://rapidapi.com/astsiatsko/api
 
 
 ## Using Flutter APIs:
+
 - **Kotlin** version: 1.3.50
 - **MVVM Design Patterns**
 - **Coroutines** version: 1.2.1
@@ -21,14 +22,20 @@ Get the data from: [Coronavirus Monitor API](https://rapidapi.com/astsiatsko/api
 - **SwiperefreshLayout** version: 1.0.0
 - **Notifications**
 
+
 ## Screenshot:
 
-<img src = "images/Screenshot_1-SplashScreen.jpg" width ="100">
-<img src = "images/Screenshot_2-HomeScreen.jpg" width ="100">
-<img src = "images/Screenshot_3-SubscribeScreen.jpg" width ="100">
-<img src = "images/Screenshot_4-SelectCountryScreen.jpg" width ="100">
-<img src = "images/Screenshot_5-HomeScreen_Land.jpg" width ="100">
-<img src = "images/Screenshot_6-Notification.jpg" width ="100">
-<img src = "images/Screenshot_7-NotificationScreen.jpg" width = "100"">
-<img src = "images/Screenshot_8-NotificationScreen_Land.jpg" width = "100"">
+<div>
+  <span style="font-size: 16pt;">
+  <img src = "images/Screenshot_1-SplashScreen.jpg" width ="250">               <span style="font-size: 36pt;">
+  <img src = "images/Screenshot_2-HomeScreen.jpg" width ="250">                 <span style="font-size: 36pt;">
+  <img src = "images/Screenshot_3-SubscribeScreen.jpg" width ="250">            <span style="font-size: 36pt;">
+  <br/> <br/>
+  <img src = "images/Screenshot_4-SelectCountryScreen.jpg" width ="250">        <span style="font-size: 36pt;">
+  <img src = "images/Screenshot_6-Notification.jpg" width ="250">               <span style="font-size: 36pt;">
+  <img src = "images/Screenshot_7-NotificationScreen.jpg" width = "250"">       <span style="font-size: 36pt;">
+   <br/> <br/>                                                                                                  
+  <img src = "images/Screenshot_5-HomeScreen_Land.jpg" height ="216" >           <span style="font-size: 36pt;">                         
+  <img src = "images/Screenshot_8-NotificationScreen_Land.jpg" height = "216">  <span style="font-size: 36pt;">
+<div>
 
