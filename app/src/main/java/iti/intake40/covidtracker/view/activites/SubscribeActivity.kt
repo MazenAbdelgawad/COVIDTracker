@@ -42,13 +42,13 @@ class SubscribeActivity : AppCompatActivity() {
             if (countryName.equals("")){
                 layout_subscribe.visibility = View.VISIBLE
                 layout_details.visibility = View.INVISIBLE
-                txt_country_name_selected.visibility = View.INVISIBLE
+                layout_county_name.visibility = View.INVISIBLE
                 imageView_home_heart.visibility = View.INVISIBLE
                 setTimeing()
             } else {
                 layout_subscribe.visibility = View.INVISIBLE
                 layout_details.visibility = View.VISIBLE
-                txt_country_name_selected.visibility = View.VISIBLE
+                layout_county_name.visibility = View.VISIBLE
                 imageView_home_heart.visibility = View.VISIBLE
 
                 subscribeViewModel?.getCountry(countryName)?.observe(this,Observer<Country>{

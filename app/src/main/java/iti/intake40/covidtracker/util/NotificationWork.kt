@@ -44,7 +44,10 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
                             val filterCountries = response.body()!!.countriesStat.filter { it.countryName.trim() != ""  }
 
                             val db = CountryDatabase.getDatabase(applicationContext)
+                            db?.countryDao()?.deleteAllCountries()
                             db?.countryDao()?.setCountries(filterCountries)
+
+                            CountryRepository(applicationContext).saveDateInPref(response.body()!!.statisticTakenAt)
 
                             var msg = ""
                             var updateCases = 0

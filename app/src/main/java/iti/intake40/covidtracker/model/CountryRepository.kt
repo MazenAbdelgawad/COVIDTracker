@@ -31,13 +31,14 @@ class CountryRepository(var application: Context): CoroutineScope {
 
     fun getCountryObj(countryName: String)= countryDao?.getCountryObj(countryName)
 
-    fun deleteAllCountry()= countryDao?.deleteAllCountries()
+    private fun deleteAllCountry()= countryDao?.deleteAllCountries()
 
     fun setCountries(countries: List<Country>){
         launch { setCountriesBG(countries) }
     }
     private suspend fun setCountriesBG(countries: List<Country>){
         withContext(Dispatchers.IO){
+            deleteAllCountry()
             countryDao?.setCountries(countries)
         }
     }
