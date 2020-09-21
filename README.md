@@ -10,7 +10,7 @@ User can click on notification to get more details about the new changes.
 Get the data from: [Coronavirus Monitor API](https://rapidapi.com/astsiatsko/api/coronavirus-monitor)
 
 
-## Using Flutter APIs:
+## Using Tools:
 
 - **Kotlin** version: 1.3.50
 - **MVVM Design Patterns**
