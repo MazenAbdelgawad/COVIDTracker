@@ -19,11 +19,12 @@ import iti.intake40.covidtracker.util.NotificationWork
 import iti.intake40.covidtracker.view.adapters.SelectCountryAdapter
 import iti.intake40.covidtracker.viewmodel.SelectCountryViewModel
 import kotlinx.android.synthetic.main.activity_select_country.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
 
 class SelectCountryActivity : AppCompatActivity() {
-    private var selectCountryViewModel: SelectCountryViewModel? = null
+    private val selectCountryViewModel: SelectCountryViewModel by viewModel()
     private val workManager = WorkManager.getInstance(application)
 
     var selectRadioButtonHour : Int = 2
@@ -35,7 +36,7 @@ class SelectCountryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_country)
 
-        selectCountryViewModel = ViewModelProviders.of(this).get(SelectCountryViewModel::class.java)
+        //selectCountryViewModel = ViewModelProviders.of(this).get(SelectCountryViewModel::class.java)
         selectCountryViewModel?.getAllCountry()?.observe(this, Observer<List<Country>> {
             setupView(it)
         })

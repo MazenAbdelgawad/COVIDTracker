@@ -18,18 +18,19 @@ import kotlinx.android.synthetic.main.activity_subscribe.imageView_home_heart
 import kotlinx.android.synthetic.main.activity_subscribe.month_id
 import kotlinx.android.synthetic.main.activity_subscribe.txt_country_name_selected
 import kotlinx.android.synthetic.main.activity_subscribe.year_id
+import org.koin.android.ext.android.inject
 
 class SubscribeActivity : AppCompatActivity() {
 
 
 
-    private var subscribeViewModel:SubscribeViewModel? = null
+    private val subscribeViewModel:SubscribeViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_subscribe)
 
-        subscribeViewModel = ViewModelProviders.of(this).get(SubscribeViewModel::class.java)
+        //subscribeViewModel = ViewModelProviders.of(this).get(SubscribeViewModel::class.java)
 
     }
 

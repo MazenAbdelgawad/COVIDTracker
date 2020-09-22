@@ -12,7 +12,7 @@ class CovidTrackerApp : Application() {
         startKoin {
             printLogger(Level.DEBUG)
             androidContext(this@CovidTrackerApp)
-            modules(covidTrackerModule)
+            modules(covidTrackerModules)
         }
     }
 }

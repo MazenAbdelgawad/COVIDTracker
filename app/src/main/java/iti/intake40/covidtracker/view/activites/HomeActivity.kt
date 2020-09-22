@@ -19,15 +19,16 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.day_id
 import kotlinx.android.synthetic.main.activity_home.month_id
 import kotlinx.android.synthetic.main.activity_home.year_id
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
-    private var countriesViewModel: CountriesViewModel? = null
+    private val countriesViewModel: CountriesViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        countriesViewModel = ViewModelProviders.of(this).get(CountriesViewModel::class.java)
+        //countriesViewModel = ViewModelProviders.of(this).get(CountriesViewModel::class.java)
 
         countriesViewModel?.refreshCountriesFromApi(applicationContext){
             if (it != null){
