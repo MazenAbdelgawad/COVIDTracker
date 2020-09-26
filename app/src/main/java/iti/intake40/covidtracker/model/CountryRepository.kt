@@ -5,7 +5,8 @@ import android.content.SharedPreferences
 import android.util.Log
 import iti.intake40.covidtracker.model.db.CountryDao
 import iti.intake40.covidtracker.model.db.CountryDatabase
-import iti.intake40.covidtracker.model.net.RetrofitClient
+import iti.intake40.covidtracker.model.net.RetrofitApi
+//import iti.intake40.covidtracker.model.net.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,17 +14,20 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import kotlin.coroutines.CoroutineContext
 
-class CountryRepository(var application: Context): CoroutineScope {
+class CountryRepository(private val countryDao: CountryDao,
+                        private val retrofitApi: RetrofitApi,
+                        private val sharedPref: SharedPreferences
+): CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
-    private var countryDao: CountryDao?
+//    private var countryDao: CountryDao?
 
-    init {
-        val db= CountryDatabase.getDatabase(application)
-        countryDao = db?.countryDao()
-    }
+//    init {
+//        val db= CountryDatabase.getDatabase(application)
+//        countryDao = db?.countryDao()
+//    }
 
     fun getCountries()= countryDao?.getCountries()
 
@@ -46,9 +50,9 @@ class CountryRepository(var application: Context): CoroutineScope {
 
     fun refreshCountriesFromApi(){
         Log.i("@@->"," Start refreshCountriesFromApi()")
-        val service = RetrofitClient.makeRetrofitService()
+//        val service = RetrofitClient.makeRetrofitService()
         CoroutineScope(Dispatchers.IO).launch {
-            val response = service.loadCountries()
+            val response = retrofitApi.loadCountries()
 
             withContext(Dispatchers.Main){
                 try {
@@ -111,7 +115,7 @@ class CountryRepository(var application: Context): CoroutineScope {
             12 -> month = "Dec"
         }
 
-        val sharedPref: SharedPreferences = application.getSharedPreferences(Const.PREF_NAME ,0)
+        //val sharedPref: SharedPreferences = application.getSharedPreferences(Const.PREF_NAME ,0)
         sharedPref.edit().putString(Const.PREF_YEAR, year ).commit()
         sharedPref.edit().putString (Const.PREF_MONTH ,month ).commit()
         sharedPref.edit().putString(Const.PREF_DAY ,day).commit()

@@ -5,11 +5,13 @@ import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import iti.intake40.covidtracker.model.CountryRepository
 import iti.intake40.covidtracker.model.net.NetworkUtil
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class CountriesViewModel(application: Application) : AndroidViewModel(application) {
+class CountriesViewModel(application: Application, private val repository: CountryRepository) : AndroidViewModel(application) {
 
-    private var repository: CountryRepository =
-        CountryRepository(application)
+//    private var repository: CountryRepository =
+//        CountryRepository(application)
 
     fun getCountries()= repository.getCountries()
 

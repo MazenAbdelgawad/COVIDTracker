@@ -7,10 +7,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object RetrofitClient {
+//object RetrofitClient {
     private val BASE_URL = "https://coronavirus-monitor.p.rapidapi.com/coronavirus/"
 
-    private val httpClient = OkHttpClient.Builder()
+     fun createHttpClient (): OkHttpClient.Builder = OkHttpClient.Builder()
         .connectTimeout(2, TimeUnit.MINUTES)
         .writeTimeout(2, TimeUnit.MINUTES)
         .readTimeout(2, TimeUnit.MINUTES)
@@ -24,14 +24,14 @@ object RetrofitClient {
     })
 
 
-    fun makeRetrofitService(): RetrofitApi {
+    fun createRetrofitService(): RetrofitApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(httpClient.build())
+            .client(createHttpClient().build())
             .build()
             .create(RetrofitApi::class.java)
     }
 
 
-}
+//}

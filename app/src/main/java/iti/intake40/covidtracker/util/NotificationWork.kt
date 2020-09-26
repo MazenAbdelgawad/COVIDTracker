@@ -7,19 +7,22 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import iti.intake40.covidtracker.injectByKoinInstance
 import iti.intake40.covidtracker.model.Const
 import iti.intake40.covidtracker.model.CountryRepository
 import iti.intake40.covidtracker.model.db.CountryDatabase
 import iti.intake40.covidtracker.model.net.NetworkUtil
-import iti.intake40.covidtracker.model.net.RetrofitClient
+import iti.intake40.covidtracker.model.net.RetrofitApi
+//import iti.intake40.covidtracker.model.net.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.core.KoinComponent
 import retrofit2.HttpException
 
 
-class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
+class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, params), KoinComponent {
 
     override fun doWork(): Result {
         if (NetworkUtil().isNetworkConnected(applicationContext)) {
@@ -31,9 +34,9 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
 
     private fun makeNotification(appContext: Context) {
         CoroutineScope(Dispatchers.IO).launch {
-            var repository =
-                CountryRepository(appContext)
-            val service = RetrofitClient.makeRetrofitService()
+            val repository: CountryRepository = injectByKoinInstance()
+                //CountryRepository(get(), get() ,get())
+            val service: RetrofitApi = injectByKoinInstance() //by inject()//= RetrofitClient.makeRetrofitService()
             val response = service.loadCountries()
 
             withContext(Dispatchers.IO) {
@@ -43,18 +46,19 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
 
                             val filterCountries = response.body()!!.countriesStat.filter { it.countryName.trim() != ""  }
 
-                            val db = CountryDatabase.getDatabase(applicationContext)
+                            val db: CountryDatabase = injectByKoinInstance() //CountryDatabase.getDatabase(applicationContext)
                             db?.countryDao()?.deleteAllCountries()
                             db?.countryDao()?.setCountries(filterCountries)
 
-                            CountryRepository(applicationContext).saveDateInPref(response.body()!!.statisticTakenAt)
+                            //CountryRepository(applicationContext,CountryDatabase.getDatabase(applicationContext)!!.countryDao())
+                                repository.saveDateInPref(response.body()!!.statisticTakenAt)
 
                             var msg = ""
                             var updateCases = 0
                             var updateDeaths = 0
                             var updateRecovered = 0
-                            val sharedPref: SharedPreferences =
-                                appContext.getSharedPreferences(Const.PREF_NAME, 0)
+                            val sharedPref: SharedPreferences = injectByKoinInstance()
+                                //appContext.getSharedPreferences(Const.PREF_NAME, 0)
                             val countryName = sharedPref.getString(Const.PREF_NAME, "")
                             var oldCountryCases = sharedPref.getString(Const.PREF_COUNTRY_CASES, "0")
                             var oldCountryDeaths = sharedPref.getString(Const.PREF_COUNTRY_DEATHS, "0")
@@ -89,9 +93,8 @@ class NotificationWork(ctx: Context, params: WorkerParameters) : Worker(ctx, par
 
                                     if (changeFlag == true) {
 
-                                        val editPref: SharedPreferences.Editor =
-                                            appContext.getSharedPreferences(Const.PREF_NAME, 0)
-                                                .edit()
+                                        val editPref: SharedPreferences.Editor = injectByKoinInstance<SharedPreferences>().edit()
+                                            //appContext.getSharedPreferences(Const.PREF_NAME, 0).edit()
                                         editPref.putString(Const.PREF_COUNTRY_CASES, country.cases)
                                         editPref.putString(Const.PREF_COUNTRY_DEATHS, country.deaths)
                                         editPref.putString(
