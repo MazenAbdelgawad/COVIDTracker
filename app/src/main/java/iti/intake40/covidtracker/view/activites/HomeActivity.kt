@@ -1,24 +1,18 @@
 package iti.intake40.covidtracker.view.activites
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import iti.intake40.covidtracker.R
-import iti.intake40.covidtracker.model.Const
 import iti.intake40.covidtracker.model.Country
 import iti.intake40.covidtracker.view.adapters.HomeAdapter
 import iti.intake40.covidtracker.viewmodel.CountriesViewModel
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_home.day_id
-import kotlinx.android.synthetic.main.activity_home.month_id
-import kotlinx.android.synthetic.main.activity_home.year_id
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -30,6 +24,8 @@ class HomeActivity : AppCompatActivity() {
 
         //countriesViewModel = ViewModelProviders.of(this).get(CountriesViewModel::class.java)
 
+        setupView()
+
         countriesViewModel?.refreshCountriesFromApi(applicationContext){
             if (it != null){
                 Toast.makeText(applicationContext,it,Toast.LENGTH_LONG).show()
@@ -37,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         countriesViewModel?.getCountries()?.observe(this, Observer<List<Country>> {
-            setupView(it)
+            updateView(it)
             swipe_refresh_layout.isRefreshing = false
         })
 
@@ -54,9 +50,14 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
-    fun setupView(list: List<Country>) {
+    private fun setupView() {
         val layout = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layout
+        recyclerView.adapter = HomeAdapter(listOf())
+        setTiming()
+    }
+
+    private fun updateView(list: List<Country>) {
         recyclerView.adapter = HomeAdapter(list)
         setTiming()
     }
@@ -66,11 +67,12 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun setTiming (){
-        val sharedPref: SharedPreferences = getSharedPreferences(Const.PREF_NAME, 0)
-        year_id.text = sharedPref.getString(Const.PREF_YEAR,"")
-        month_id.text  = sharedPref.getString(Const.PREF_MONTH , "")
-        day_id.text = sharedPref.getString(Const.PREF_DAY , "")
+    private fun setTiming() {
+        countriesViewModel.getTiming().observe(this, Observer {
+            year_id.text = it.year
+            month_id.text = it.month
+            day_id.text = it.day
+        })
     }
 
 }

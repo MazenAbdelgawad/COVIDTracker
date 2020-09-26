@@ -1,17 +1,14 @@
 package iti.intake40.covidtracker.view.activites
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.*
 import iti.intake40.covidtracker.R
-import iti.intake40.covidtracker.model.Const
 import iti.intake40.covidtracker.model.Const.Companion.WORK_MANAGER_TAG
 import iti.intake40.covidtracker.model.Country
 import iti.intake40.covidtracker.model.NotificationHour
@@ -38,24 +35,29 @@ class SelectCountryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_select_country)
 
         //selectCountryViewModel = ViewModelProviders.of(this).get(SelectCountryViewModel::class.java)
+        setupView()
         selectCountryViewModel?.getAllCountry()?.observe(this, Observer<List<Country>> {
-            setupView(it)
+            updateView(it)
         })
 
 
     }
 
 
-    private fun setupView(list: List<Country>) {
+    private fun setupView() {
         val layout = LinearLayoutManager(applicationContext)
         recycler_select_country.layoutManager = layout
+        recycler_select_country.adapter = SelectCountryAdapter(listOf(),{})
+    }
+
+    private fun updateView(list: List<Country>) {
         recycler_select_country.adapter = SelectCountryAdapter(list) {
             txt_country_name_selected.text =  it.countryName
             countryCases = it.cases
             countryDeaths = it.deaths
             countryRecovered = it.totalRecovered
         }
-        setTimeing()
+        setTiming()
         setRadioButton()
     }
 
@@ -106,13 +108,13 @@ class SelectCountryActivity : AppCompatActivity() {
 
     fun clickBtnSave(view: View) {
         if(txt_country_name_selected.text.trim().isNotEmpty()){
-            val editPref: SharedPreferences.Editor = getSharedPreferences(Const.PREF_NAME, 0).edit()
-            editPref.putString(Const.PREF_NAME,txt_country_name_selected.text.toString())
-            editPref.putInt(Const.PREF_HORE ,selectRadioButtonHour)
-            editPref.putString(Const.PREF_COUNTRY_CASES,countryCases)
-            editPref.putString(Const.PREF_COUNTRY_DEATHS,countryDeaths)
-            editPref.putString(Const.PREF_COUNTRY_RECOVERED,countryRecovered)
-            editPref.commit()
+            selectCountryViewModel.saveSelectedCountryData(
+                txt_country_name_selected.text.toString(),
+                selectRadioButtonHour,
+                countryCases,
+                countryDeaths,
+                countryRecovered
+            )
 
             //WorkManager
             startWorkManger()
@@ -123,26 +125,25 @@ class SelectCountryActivity : AppCompatActivity() {
         }
     }
 
-    fun setTimeing (){
-        val sharedPref: SharedPreferences = getSharedPreferences(Const.PREF_NAME, 0)
-        year_id.text = sharedPref.getString(Const.PREF_YEAR,"")
-        month_id.text  = sharedPref.getString(Const.PREF_MONTH , "")
-        day_id.text = sharedPref.getString(Const.PREF_DAY , "")
+    private fun setTiming() {
+        selectCountryViewModel.getTiming().observe(this, Observer {
+            year_id.text = it.year
+            month_id.text = it.month
+            day_id.text = it.day
+        })
     }
 
 
     fun setRadioButton(){
-        val sharedPref: SharedPreferences = getSharedPreferences(Const.PREF_NAME, 0)
-        //txt_country_name_selected.text = sharedPref.getString(Const.PREF_NAME , "")
-
-        var houre = sharedPref.getInt(Const.PREF_HORE,2)
-        selectRadioButtonHour = houre
-        when(houre) {
-            NotificationHour.ONE.hour -> { rb1.setChecked(true) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(false)}
-            NotificationHour.TWO.hour -> { rb1.setChecked(false) ; rb2.setChecked(true) ;rb3.setChecked(false);rb4.setChecked(false) }
-            NotificationHour.FIVE.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(true);rb4.setChecked(false)}
-            NotificationHour.DAY.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(true)}
-        }
+        selectCountryViewModel.getHourFromSharedPref().observe(this, Observer {
+        selectRadioButtonHour = it
+            when(it) {
+                NotificationHour.ONE.hour -> { rb1.setChecked(true) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(false)}
+                NotificationHour.TWO.hour -> { rb1.setChecked(false) ; rb2.setChecked(true) ;rb3.setChecked(false);rb4.setChecked(false) }
+                NotificationHour.FIVE.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(true);rb4.setChecked(false)}
+                NotificationHour.DAY.hour -> { rb1.setChecked(false) ; rb2.setChecked(false) ;rb3.setChecked(false);rb4.setChecked(true)}
+            }
+        })
     }
 
 
